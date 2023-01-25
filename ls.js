@@ -8,4 +8,3 @@ module.exports = fs.readdir('./', 'utf8', (err, files) => {
         process.stdout.write('\nprompt > ');
     }
 });
-;
