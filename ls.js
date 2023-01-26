@@ -9,9 +9,15 @@ const fs = require('fs');
 //     }
 // });
 
+// module.exports = (done) => {
+//     fs.readdir(__dirname, (err, files) => {
+//         process.stdout.write(files.join('\n'));
+//         process.stdout.write('\nprompt > ');
+//     });
+// }
+
 module.exports = (done) => {
     fs.readdir(__dirname, (err, files) => {
-        process.stdout.write(files.join('\n'));
-        process.stdout.write('\nprompt > ');
+        done(files.join('\n'));
     });
 }

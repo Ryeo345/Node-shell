@@ -1,4 +1,5 @@
-module.exports =  function (){
-    console.log("Current working directory: ", // process.cwd comes from the global process module
-        process.cwd());
-}
+const pwd = done => {
+    done(__dirname);
+};
+
+module.exports = pwd;

@@ -30,7 +30,10 @@
 //     };
 // });
 
-const fs = require('fs');
+// const fs = require('fs');
+const ls = require('./ls');
+const pwd = require('./pwd');
+const cat = require('./cat');
 const done = (output) => {
     process.stdout.write(output);
     process.stdout.write('\nprompt > ');
@@ -44,19 +47,27 @@ process.stdin.on('data', (data) => {
     const cmd = data.toString().trim(); //remove the newline
 
     if (cmd === 'pwd') {
-        done(`Current working directory: ${process.cwd()}`);
+        pwd(done);
+        // done(`Current working directory: ${process.cwd()}`);
         // process.stdout.write('\nprompt > ');
     }
 
     else if (cmd === 'ls') {
-        fs.readdir('./', 'utf8', (err, files) => {
-            if (err) {
-                throw err;
-            } else {
-                done(files.join('\n'));
-                // process.stdout.write('\n\nprompt > ');
-            }
-        });
+        // fs.readdir('./', 'utf8', (err, files) => {
+        //     if (err) {
+        //         throw err;
+        //     } else {
+        //         done(files.join('\n'));
+        //         // process.stdout.write('\n\nprompt > ');
+        //     }
+        // });
+        ls(done);
+    }
+    else if (cmd.startsWith('cat')) {
+        const file = cmd.split(' ')[1]
+        console.log(cmd);
+        console.log(file);
+        cat(done, file); // don't forget to add the correct amount ogf arguments
     }
 
     else if (cmd === 'date') {
