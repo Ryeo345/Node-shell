@@ -34,6 +34,7 @@
 const ls = require('./ls');
 const pwd = require('./pwd');
 const cat = require('./cat');
+const date = require('./date');
 const done = (output) => {
     process.stdout.write(output);
     process.stdout.write('\nprompt > ');
@@ -71,7 +72,7 @@ process.stdin.on('data', (data) => {
     }
 
     else if (cmd === 'date') {
-        done(new Date().toString());
+        date(done);
     }
 
     else {
